@@ -6,7 +6,7 @@ zhihu: bu-lu-si-jie
 twitter: JieHuang
 v2ex: JieHuang
 
-url: https://jie-huangi.github.io
+url: https://jiehuang.top
 menu:
   - title: 'Categories'
     url: '/categories.html'
@@ -31,7 +31,7 @@ sass:
 
 permalink:   /:year-:month-:day/:title.html
 # assetUrl: //tw93.fun/images/
-assetUrl: 
+assetUrl: //jiehuang.top/images/
 defaultImage: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 
 google_analytics: UA-57207999-1
