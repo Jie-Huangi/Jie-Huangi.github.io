@@ -1,0 +1,60 @@
+title:            JieHuang
+description:      "Hi，我是 JieHuang，是一个在校学生，会一点 Python / C / C++，喜欢折腾各种新技术。"
+
+github: jie-huangi
+zhihu: bu-lu-si-jie
+twitter: JieHuang
+v2ex: JieHuang
+
+url: https://jie-huangi.github.io
+menu:
+  - title: 'Categories'
+    url: '/categories.html'
+  - title: 'About'
+    url: '/about'
+  - title: 'Weekly'
+    url: https://github.com/Jie-Huangi
+  - title: 'Github'
+    url: https://github.com/Jie-Huangi
+  - title: 'RSS'
+    url: '/feed.xml'
+
+timezone:    Africa/El_Aaiun
+locale:      zh_CN
+lang:      zh-cmn-Hans
+future:      true
+highlighter: rouge
+markdown:    kramdown
+sass:
+  sass_dir: _sass
+  style: compressed
+
+permalink:   /:year-:month-:day/:title.html
+# assetUrl: //tw93.fun/images/
+assetUrl: 
+defaultImage: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+
+google_analytics: UA-57207999-1
+baidu_verify: kxGpkpWG7G
+google_verify: DbapjTyfmMvvmkuA1GiGcXMqgPQrtgxeUTGY-MrEOYw
+
+paginate: 10
+post_ext: md
+page_ext: md
+post_layout: post
+page_layout: page
+titlecase: true
+
+showBuyCoffee: true
+payImage: //gw.alipayobjects.com/zos/k/vb/1.png
+
+include: [".htaccess"]
+exclude: ["Gemfile", "Gemfile.lock", "README.md", "LICENSE", "package.json","node_modules"]
+gems:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
+
+plugins:
+  - jekyll-paginate
+  - jekyll-pdf-embed

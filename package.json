@@ -1,0 +1,22 @@
+{
+  "name": "JieHuang",
+  "author": "",
+  "homepage": "https://JieHuang.top",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jie-Huangi/Jie-Huangi.github.io"
+  },
+  "bugs": {
+    "url": "https://github.com/Jie-Huangi/Jie-Huangi.github.io/issues"
+  },
+  "scripts": {
+    "prep": "gem install bundler && bundle install",
+    "dev": "bundle exec jekyll serve --watch --trace",
+    "start": "npm run dev",
+    "build": "bundle exec jekyll build",
+    "min": "uglifyjs ./js/index.js -o ./js/index.min.js  --comments all"
+  },
+  "devDependencies": {
+    "uglify-js": "^2.7.5"
+  }
+}
