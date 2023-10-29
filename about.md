@@ -6,8 +6,7 @@ hideHomeActive: true
 ---
 
 ## About Me
-
-- I'm a postgraduate.I have published a paper about deep learning in argriculture. Link is [here](http://www.tcsae.org/cn/article/doi/10.11975/j.issn.1002-6819.202303035).
+- I'm a postgraduate.I have published a [paper](https://jiehuang.top/images/papers/基于轻量型卷积神经网络的马铃薯种薯芽眼检测算法.pdf) about deep learning in argriculture. Link is [here](http://www.tcsae.org/cn/article/doi/10.11975/j.issn.1002-6819.202303035).
 
 ## Follow Me
 
