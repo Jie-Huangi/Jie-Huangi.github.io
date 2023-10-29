@@ -7,7 +7,7 @@ hideHomeActive: true
 
 ## About Me
 
-- I'm a postgraduate.
+- I'm a postgraduate.I have published a paper about deep learning in argriculture. Link is [here](/home/huangjie/Documents/002online_blog/001_myblog/Jie-Huangi.github.io/images/papers/基于轻量型卷积神经网络的马铃薯种薯芽眼检测算法.pdf).
 
 ## Follow Me
 
