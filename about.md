@@ -6,7 +6,7 @@ hideHomeActive: true
 ---
 
 ## About Me
-- Jie Huang now is a Combined Master and Ph.D. student at the School of Agricultural Engineering and Food Science from Shandong University of Technology, China. Jie Huang's research interests include deep learning and computer vision, with a focus on oriented object detection/instance segmentation, Robotics and Microcontroller.
+- Jie Huang is now a Combined Master and Ph.D. student at the School of Agricultural Engineering and Food Science from Shandong University of Technology, China. Jie Huang's research interests include deep learning and computer vision, with a focus on oriented object detection/instance segmentation, Robotics and Microcontroller.
 
 - Jie Huang received the B. E. degree from School of Intelligent Manufacturing Engineering, Chongqing University of Arts and Science, Chongqing, China. 
 
