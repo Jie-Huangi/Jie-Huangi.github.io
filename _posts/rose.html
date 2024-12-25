@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电子玫瑰</title>
+
+<style>
+    body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+        font-family: sans-serif;
+        overflow: hidden; /* 防止滚动 */
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .rose {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        animation: pulse 2s infinite alternate;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.1); }
+    }
+
+
+    .petal {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background-color: #ff69b4; /* 玫瑰色 */
+        border-radius: 50%;
+        opacity: 0.8;
+    }
+
+    .petal:nth-child(1) { top: 0; left: 30px; }
+    .petal:nth-child(2) { top: 10px; left: 10px; transform: rotate(45deg); }
+    .petal:nth-child(3) { top: 10px; right: 10px; transform: rotate(-45deg); }
+    .petal:nth-child(4) { top: 40px; left: 0px; transform: rotate(90deg); }
+    .petal:nth-child(5) { top: 40px; right: 0px; transform: rotate(-90deg); }
+    .petal:nth-child(6) { top: 70px; left: 10px; transform: rotate(45deg); }
+    .petal:nth-child(7) { top: 70px; right: 10px; transform: rotate(-45deg); }
+    .petal:nth-child(8) { top: 80px; left: 30px; }
+
+
+    .name-container {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .name-input {
+      margin-bottom: 10px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .name-display {
+      font-size: 1.2em;
+      color: #333;
+    }
+
+    @media screen and (max-width: 600px) {
+        .rose {
+            width: 80px;
+            height: 80px;
+        }
+        .petal {
+           width: 30px;
+           height: 30px;
+        }
+        .petal:nth-child(1) { top: 0; left: 25px; }
+        .petal:nth-child(2) { top: 5px; left: 5px;  }
+        .petal:nth-child(3) { top: 5px; right: 5px;  }
+        .petal:nth-child(4) { top: 35px; left: 0px;  }
+        .petal:nth-child(5) { top: 35px; right: 0px;  }
+        .petal:nth-child(6) { top: 65px; left: 5px;  }
+        .petal:nth-child(7) { top: 65px; right: 5px; }
+        .petal:nth-child(8) { top: 70px; left: 25px; }
+        .name-display {
+           font-size: 1em;
+       }
+    }
+
+
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="rose">
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+    </div>
+    <div class="name-container">
+      <input type="text" class="name-input" placeholder="输入名字" id="nameInput">
+        <div class="name-display" id="nameDisplay"></div>
+    </div>
+  </div>
+<script>
+  const nameInput = document.getElementById('nameInput');
+  const nameDisplay = document.getElementById('nameDisplay');
+
+  nameInput.addEventListener('input', () => {
+    nameDisplay.textContent = `送给: ${nameInput.value}`;
+  });
+
+    // 初始显示
+    nameDisplay.textContent = '输入名字送出惊喜!';
+</script>
+</body>
+</html>
