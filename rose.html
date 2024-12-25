@@ -11,8 +11,8 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #000; /* 背景改为黑色 */
-            font-family: sans-serif;
+            background: linear-gradient(135deg, #ffcccc, #ffe6e6); /* 渐变背景 */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
         }
 
@@ -22,155 +22,202 @@
             align-items: center;
         }
 
-         .rose {
+        .rose {
             position: relative;
-            width: 100px;
-            height: 100px;
+            width: 200px;
+            height: 200px;
             display: none; /* 初始隐藏玫瑰 */
             animation: pulse 2s infinite alternate;
         }
-         .rose.show {
+        .rose.show {
             display: block; /* 显示玫瑰 */
         }
 
         @keyframes pulse {
             0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
+            100% { transform: scale(1.05); }
         }
-         .stem {
-             position: absolute;
-             width: 4px;
-             height: 20px;
-             background-color: #228b22; /* 绿色茎 */
-             bottom: 0;
-             left: 48px;
-            border-radius: 2px;
-         }
 
+        .stem {
+            position: absolute;
+            width: 6px;
+            height: 150px;
+            background: linear-gradient(to bottom, #228B22, #006400); /* 渐变绿色茎 */
+            bottom: -150px;
+            left: 97px;
+            border-radius: 3px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        }
+
+        .leaf {
+            position: absolute;
+            width: 40px;
+            height: 20px;
+            background: linear-gradient(to right, #228B22, #32CD32);
+            border-radius: 20px 20px 0 20px;
+            opacity: 0.85;
+            box-shadow: inset -2px -2px 5px rgba(0,0,0,0.2);
+        }
+
+        .leaf.left {
+            top: 60px;
+            left: -30px;
+            transform: rotate(-30deg);
+        }
+
+        .leaf.right {
+            top: 100px;
+            left: 130px;
+            transform: rotate(30deg);
+        }
 
         .petal {
             position: absolute;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at 30% 30%, #ff0000, #cc0000);
+            border-radius: 50%;
+            opacity: 0.95;
+            box-shadow: inset -3px -3px 8px rgba(0,0,0,0.3);
+            transform-origin: center;
+            transition: transform 0.3s;
+        }
+
+        .petal:hover {
+            transform: scale(1.1) rotate(0deg);
+        }
+
+        /* 增加更多花瓣以使玫瑰更饱满 */
+        .petal:nth-child(3) { top: 20px; left: 60px; transform: rotate(0deg); }
+        .petal:nth-child(4) { top: 10px; left: 100px; transform: rotate(45deg); }
+        .petal:nth-child(5) { top: 40px; left: 140px; transform: rotate(90deg); }
+        .petal:nth-child(6) { top: 80px; left: 120px; transform: rotate(135deg); }
+        .petal:nth-child(7) { top: 120px; left: 100px; transform: rotate(180deg); }
+        .petal:nth-child(8) { top: 80px; left: 60px; transform: rotate(-135deg); }
+        .petal:nth-child(9) { top: 40px; left: 20px; transform: rotate(-90deg); }
+        .petal:nth-child(10) { top: 10px; left: 60px; transform: rotate(-45deg); }
+        .petal:nth-child(11) { top: 20px; left: 100px; transform: rotate(0deg); }
+
+        .center {
+            position: absolute;
             width: 40px;
             height: 40px;
-             border-radius: 50%;
-           box-shadow: 0 0 10px rgba(255, 105, 180, 0.8), 0 0 5px rgba(255, 105, 180, 0.5); /* 光晕效果 */
-            opacity: 1;
+            background: radial-gradient(circle at 30% 30%, #ffff00, #ffcc00);
+            border-radius: 50%;
+            top: 80px;
+            left: 80px;
+            box-shadow: inset -2px -2px 5px rgba(0,0,0,0.2);
+            z-index: 2;
         }
-
-
-          .petal:nth-child(1) {
-             top: 0;
-             left: 30px;
-             background: radial-gradient(circle at center, rgba(255,105,180,0.7) 10%, transparent 60%);
-        }
-        .petal:nth-child(2) {
-            top: 10px;
-            left: 10px;
-            transform: rotate(45deg);
-             background: radial-gradient(circle at center, rgba(255,105,180,0.7) 10%, transparent 60%);
-        }
-        .petal:nth-child(3) {
-            top: 10px;
-            right: 10px;
-            transform: rotate(-45deg);
-             background: radial-gradient(circle at center, rgba(255,105,180,0.7) 10%, transparent 60%);
-        }
-        .petal:nth-child(4) {
-             top: 30px;
-             left: 0;
-             transform: rotate(90deg);
-             background: radial-gradient(circle at center, rgba(255,105,180,0.7) 10%, transparent 60%);
-        }
-        .petal:nth-child(5) {
-            top: 30px;
-            right: 0;
-            transform: rotate(-90deg);
-            background: radial-gradient(circle at center, rgba(255,105,180,0.7) 10%, transparent 60%);
-        }
-        .petal:nth-child(6) {
-             top: 60px;
-             left: 10px;
-             transform: rotate(45deg);
-             background: radial-gradient(circle at center, rgba(255,105,180,0.7) 10%, transparent 60%);
-        }
-        .petal:nth-child(7) {
-            top: 60px;
-            right: 10px;
-             transform: rotate(-45deg);
-            background: radial-gradient(circle at center, rgba(255,105,180,0.7) 10%, transparent 60%);
-        }
-        .petal:nth-child(8) {
-           top: 70px;
-           left: 30px;
-          background: radial-gradient(circle at center, rgba(255,105,180,0.7) 10%, transparent 60%);
-        }
-
 
         .name-container {
-            margin-top: 20px;
+            margin-top: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            animation: fadeIn 2s;
         }
         .name-input {
-            margin-bottom: 10px;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border: 2px solid #ff0000;
+            border-radius: 8px;
+            font-size: 1.1em;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 250px;
+            max-width: 80%;
+        }
+        .name-input:focus {
+            border-color: #cc0000;
+            box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
         }
         .name-display {
-            font-size: 1.2em;
-            color: white; /* 名字颜色改为白色 */
+            font-size: 1.8em;
+            color: #cc0000;
             margin-top: 10px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
 
         .prompt-message {
-            font-size: 1.5em;
-             color: white;
-         }
-
-
-        @media screen and (max-width: 600px) {
-             .rose {
-                 width: 80px;
-                 height: 80px;
-             }
-             .petal {
-                 width: 30px;
-                 height: 30px;
-             }
-            .petal:nth-child(1) { top: 0; left: 25px; }
-            .petal:nth-child(2) { top: 5px; left: 5px;  }
-            .petal:nth-child(3) { top: 5px; right: 5px;  }
-            .petal:nth-child(4) { top: 30px; left: 0px;  }
-            .petal:nth-child(5) { top: 30px; right: 0px;  }
-             .petal:nth-child(6) { top: 60px; left: 5px;  }
-            .petal:nth-child(7) { top: 60px; right: 5px; }
-            .petal:nth-child(8) { top: 70px; left: 25px; }
-             .name-display {
-               font-size: 1em;
-           }
-           .prompt-message {
-              font-size: 1.2em;
-           }
+            font-size: 1.8em;
+            color: #cc0000;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media screen and (max-width: 600px) {
+            .rose {
+                width: 150px;
+                height: 150px;
+            }
+            .stem {
+                width: 4px;
+                height: 100px;
+                left: 73px;
+            }
+            .leaf {
+                width: 30px;
+                height: 15px;
+            }
+            .petal {
+                width: 60px;
+                height: 60px;
+            }
+            .center {
+                width: 30px;
+                height: 30px;
+                top: 60px;
+                left: 60px;
+            }
+            .petal:nth-child(3) { top: 15px; left: 45px; }
+            .petal:nth-child(4) { top: 8px; left: 75px; }
+            .petal:nth-child(5) { top: 30px; left: 105px; }
+            .petal:nth-child(6) { top: 60px; left: 90px; }
+            .petal:nth-child(7) { top: 90px; left: 75px; }
+            .petal:nth-child(8) { top: 60px; left: 45px; }
+            .petal:nth-child(9) { top: 30px; left: 15px; }
+            .petal:nth-child(10) { top: 8px; left: 45px; }
+            .petal:nth-child(11) { top: 15px; left: 75px; }
+
+            .name-input {
+                padding: 10px 14px;
+                font-size: 1em;
+                width: 200px;
+            }
+            .name-display {
+                font-size: 1.5em;
+            }
+            .prompt-message {
+                font-size: 1.5em;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="prompt-message" id="promptMessage">请输入你的名字</div>
-        <div class="rose">
-           <div class="stem"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-           <div class="petal"></div>
-        </div>
+      <div class="prompt-message" id="promptMessage">请输入你的名字</div>
+      <div class="rose">
+        <div class="stem"></div>
+        <div class="leaf left"></div>
+        <div class="leaf right"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="center"></div>
+      </div>
         <div class="name-container">
             <input type="text" class="name-input" placeholder="输入名字" id="nameInput">
             <div class="name-display" id="nameDisplay"></div>
@@ -181,17 +228,16 @@
         const nameDisplay = document.getElementById('nameDisplay');
         const rose = document.querySelector('.rose');
         const promptMessage = document.getElementById('promptMessage');
-
         nameInput.addEventListener('input', () => {
-           if(nameInput.value.trim() !== ""){
+          if(nameInput.value.trim() !== ""){
                 nameDisplay.textContent = `送给: ${nameInput.value}`;
                 rose.classList.add('show');
                 promptMessage.style.display = 'none'; //隐藏初始提示
-           }else{
-              rose.classList.remove('show');
-              nameDisplay.textContent ='';
-              promptMessage.style.display = 'block'; //显示初始提示
-           }
+             } else {
+               rose.classList.remove('show');
+               nameDisplay.textContent = '';
+                promptMessage.style.display = 'block'; //显示初始提示
+             }
         });
     </script>
 </body>
