@@ -7,38 +7,126 @@
         body, html {
             margin: 0;
             padding: 0;
+            height: 100%;
+            width: 100%;
             overflow: hidden;
-            background-color: #000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffe6e6, #ffcccc); /* 渐变背景 */
         }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100%;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        /* 输入区域 */
+        .input-container {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+        .prompt-message {
+            font-size: 1.5em;
+            color: #cc0000;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+        .name-input {
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border: 2px solid #ff0000;
+            border-radius: 8px;
+            font-size: 1.1em;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .name-input:focus {
+            border-color: #cc0000;
+            box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+        }
+        .confirm-button {
+            padding: 10px 20px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        .confirm-button:hover {
+            background-color: #cc0000;
+        }
+        /* Canvas样式 */
         #roseCanvas {
-            display: block;
-            width: 100vw;
-            height: 100vh;
+            display: none; /* 初始隐藏Canvas */
+            background: transparent;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
-        /* 隐藏音频控制 */
-        #backgroundMusic {
-            display: none;
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* 响应式设计 */
+        @media screen and (max-width: 600px) {
+            .input-container {
+                max-width: 90%;
+            }
+            .prompt-message {
+                font-size: 1.2em;
+            }
+            .name-input {
+                font-size: 1em;
+            }
+            .confirm-button {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
-    <canvas id="roseCanvas"></canvas>
-    <audio id="backgroundMusic" loop>
-        <source src="BadApple.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+    <div class="container">
+        <!-- 输入区域 -->
+        <div class="input-container" id="inputContainer">
+            <div class="prompt-message">请输入你的名字</div>
+            <input type="text" class="name-input" placeholder="输入名字" id="nameInput">
+            <button class="confirm-button" id="confirmButton">确定</button>
+        </div>
+        <!-- 玫瑰Canvas区域 -->
+        <canvas id="roseCanvas" width="500" height="500"></canvas>
+    </div>
 
     <script>
-        const canvas = document.getElementById('roseCanvas');
-        const ctx = canvas.getContext('2d');
-        const music = document.getElementById('backgroundMusic');
+        const nameInput = document.getElementById('nameInput');
+        const confirmButton = document.getElementById('confirmButton');
+        const inputContainer = document.getElementById('inputContainer');
+        const roseCanvas = document.getElementById('roseCanvas');
+        const ctx = roseCanvas.getContext('2d');
 
-        // 设置Canvas尺寸
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const rosesize = 500;
-        const h = -250;
+        // 设置Canvas尺寸为窗口的一部分，确保居中
+        function resizeCanvas() {
+            const size = Math.min(window.innerWidth, window.innerHeight) * 0.8;
+            roseCanvas.width = size;
+            roseCanvas.height = size;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
 
         // 定义结构体
         class DOT {
@@ -52,16 +140,13 @@
         }
 
         // 初始化Z-buffer
-        const zBuffer = new Float32Array(canvas.width * canvas.height).fill(Infinity);
+        let zBuffer;
 
-        // 播放音乐
-        window.onload = () => {
-            music.play().catch((error) => {
-                console.log("自动播放被阻止。用户需要手动播放音乐。");
-            });
-        };
+        // 玫瑰参数
+        const rosesize = 500;
+        const h = -250;
 
-        // 计算点
+        // 点计算函数
         function calc(a, b, c, d) {
             let j, n, o, w, z;
 
@@ -77,11 +162,11 @@
             let B = b * 2 - 1;
             if (A * A + B * B < 1) { // 绿叶
                 if (c > 37) {
-                    j = (Math.floor(c) & 1) ? 6 : 4;
+                    j = (Math.floor(c) & 1);
                     n = j ? 6 : 4;
                     o = 0.5 / (a + 0.01) + Math.cos(b * 125) * 3 - a * 300;
                     w = b * h;
-                    d.x = o * Math.cos(n) + w * Math.sin(n) + (j ? 610 : -390);
+                    d.x = o * Math.cos(n) + w * Math.sin(n) + j * 610 - 390;
                     d.y = o * Math.sin(n) - w * Math.cos(n) + 550 - j * 350;
                     d.z = 1180 + Math.cos(B + A) * 99 - j * 300;
                     d.r = 0.4 - a * 0.1 + Math.pow(1 - B * B, -h * 6) * 0.15 - a * b * 0.4 + Math.cos(a + b) / 5 +
@@ -118,7 +203,7 @@
             return false;
         }
 
-        // 主渲染循环
+        // 主渲染函数
         function render() {
             for (let j = 0; j < 10000; j++) {
                 const a = Math.random();
@@ -128,12 +213,12 @@
 
                 if (calc(a, b, c, dot)) {
                     const z = Math.round(dot.z + 0.5);
-                    const x = Math.round(dot.x * rosesize / z - h + 0.5) + canvas.width / 2;
-                    const y = Math.round(dot.y * rosesize / z - h + 0.5) + canvas.height / 2;
+                    const x = Math.round(dot.x * rosesize / z - h + 0.5) + roseCanvas.width / 2;
+                    const y = Math.round(dot.y * rosesize / z - h + 0.5) + roseCanvas.height / 2;
 
-                    if (y > canvas.height || y < 0 || x > canvas.width || x < 0) continue;
+                    if (y > roseCanvas.height || y < 0 || x > roseCanvas.width || x < 0) continue;
 
-                    const zBufferIndex = y * canvas.width + x;
+                    const zBufferIndex = y * roseCanvas.width + x;
 
                     if (z < zBuffer[zBufferIndex]) {
                         zBuffer[zBufferIndex] = z;
@@ -158,16 +243,30 @@
             requestAnimationFrame(render);
         }
 
-        // 初始化渲染
-        render();
+        // 处理确认按钮点击
+        confirmButton.addEventListener('click', () => {
+            const name = nameInput.value.trim();
+            if (name !== "") {
+                // 隐藏输入区域
+                inputContainer.style.display = 'none';
 
-        // 调整窗口大小时更新Canvas尺寸和Z-buffer
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            // 重置Z-buffer
-            for (let i = 0; i < zBuffer.length; i++) {
-                zBuffer[i] = Infinity;
+                // 显示Canvas
+                roseCanvas.style.display = 'block';
+
+                // 初始化Z-buffer
+                zBuffer = new Float32Array(roseCanvas.width * roseCanvas.height).fill(Infinity);
+
+                // 开始渲染
+                render();
+            } else {
+                alert("请输入一个名字！");
+            }
+        });
+
+        // 允许按回车键提交
+        nameInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                confirmButton.click();
             }
         });
     </script>
