@@ -17,11 +17,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: flex-start; /* 初始时内容顶部对齐 */
             height: 100%;
             width: 100%;
             padding: 20px;
             box-sizing: border-box;
+            transition: justify-content 0.5s ease-in-out; /* 平滑过渡 */
         }
         /* 输入区域 */
         .input-container {
@@ -101,7 +102,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="container">
         <!-- 输入区域 -->
         <div class="input-container" id="inputContainer">
             <div class="prompt-message">请输入你的名字</div>
@@ -118,6 +119,7 @@
         const inputContainer = document.getElementById('inputContainer');
         const roseCanvas = document.getElementById('roseCanvas');
         const ctx = roseCanvas.getContext('2d');
+        const container = document.getElementById('container');
 
         // 设置Canvas尺寸为窗口的一部分，确保居中
         function resizeCanvas() {
@@ -249,6 +251,9 @@
             if (name !== "") {
                 // 隐藏输入区域
                 inputContainer.style.display = 'none';
+
+                // 更改容器对齐方式为center
+                container.style.justifyContent = 'center';
 
                 // 显示Canvas
                 roseCanvas.style.display = 'block';
