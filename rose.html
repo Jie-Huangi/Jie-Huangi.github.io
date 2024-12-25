@@ -2,258 +2,174 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>电子玫瑰</title>
     <style>
-        body {
+        body, html {
             margin: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #ffe6e6, #ffcccc); /* 渐变背景 */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 0;
             overflow: hidden;
+            background-color: #000;
         }
-
-        .input-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 80%;
-            max-width: 400px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        .prompt-message {
-            font-size: 1.5em;
-            color: #cc0000;
-            margin-bottom: 10px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-        }
-
-        .name-input {
-            margin-bottom: 15px;
-            padding: 12px 16px;
-            border: 2px solid #ff0000;
-            border-radius: 8px;
-            font-size: 1.1em;
-            outline: none;
-            transition: border-color 0.3s, box-shadow 0.3s;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .name-input:focus {
-            border-color: #cc0000;
-            box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
-        }
-
-        .confirm-button {
-            padding: 10px 20px;
-            background-color: #ff4d4d;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 100%;
-        }
-
-        .confirm-button:hover {
-            background-color: #cc0000;
-        }
-
-        /* Canvas样式 */
         #roseCanvas {
-            display: none; /* 初始隐藏Canvas */
-            background: transparent;
+            display: block;
+            width: 100vw;
+            height: 100vh;
         }
-
-        /* 玫瑰中心的名字 */
-        #roseName {
-            position: absolute;
-            color: #cc0000;
-            font-size: 24px;
-            font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-            pointer-events: none;
-        }
-
-        /* 动画效果 */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media screen and (max-width: 600px) {
-            .input-container {
-                width: 90%;
-            }
-
-            .prompt-message {
-                font-size: 1.2em;
-            }
-
-            .name-input {
-                font-size: 1em;
-            }
-
-            .confirm-button {
-                font-size: 1em;
-            }
-
-            #roseName {
-                font-size: 18px;
-            }
+        /* 隐藏音频控制 */
+        #backgroundMusic {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <!-- 输入区域 -->
-    <div class="input-container" id="inputContainer">
-        <div class="prompt-message">请输入你的名字</div>
-        <input type="text" class="name-input" placeholder="输入名字" id="nameInput">
-        <button class="confirm-button" id="confirmButton">确定</button>
-    </div>
-
-    <!-- 玫瑰Canvas区域 -->
-    <div id="roseContainer" style="position: relative;">
-        <canvas id="roseCanvas" width="500" height="500"></canvas>
-        <div id="roseName"></div>
-    </div>
+    <canvas id="roseCanvas"></canvas>
+    <audio id="backgroundMusic" loop>
+        <source src="BadApple.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
     <script>
-        const nameInput = document.getElementById('nameInput');
-        const confirmButton = document.getElementById('confirmButton');
-        const inputContainer = document.getElementById('inputContainer');
-        const roseCanvas = document.getElementById('roseCanvas');
-        const roseName = document.getElementById('roseName');
-        const ctx = roseCanvas.getContext('2d');
+        const canvas = document.getElementById('roseCanvas');
+        const ctx = canvas.getContext('2d');
+        const music = document.getElementById('backgroundMusic');
 
-        // 处理确认按钮点击
-        confirmButton.addEventListener('click', () => {
-            const name = nameInput.value.trim();
-            if (name !== "") {
-                // 隐藏输入区域
-                inputContainer.style.display = 'none';
+        // 设置Canvas尺寸
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-                // 显示Canvas
-                roseCanvas.style.display = 'block';
-                roseName.style.display = 'block';
-                roseName.textContent = name;
-                positionName();
+        const rosesize = 500;
+        const h = -250;
 
-                // 绘制玫瑰
-                drawRose();
-            } else {
-                alert("请输入一个名字！");
+        // 定义结构体
+        class DOT {
+            constructor(x = 0, y = 0, z = 0, r = 0, g = 0) {
+                this.x = x;
+                this.y = y;
+                this.z = z;
+                this.r = r;
+                this.g = g;
             }
-        });
-
-        // 允许按回车键提交
-        nameInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                confirmButton.click();
-            }
-        });
-
-        // 调整名字位置
-        function positionName() {
-            roseName.style.left = (roseCanvas.width / 2) - (roseName.offsetWidth / 2) + 'px';
-            roseName.style.top = (roseCanvas.height / 2) - (roseName.offsetHeight / 2) + 'px';
         }
 
-        // 绘制玫瑰函数
-        function drawRose() {
-            const centerX = roseCanvas.width / 2;
-            const centerY = roseCanvas.height / 2;
-            const petals = 20; // 花瓣数量
-            const maxRadius = 150;
-            const minRadius = 50;
+        // 初始化Z-buffer
+        const zBuffer = new Float32Array(canvas.width * canvas.height).fill(Infinity);
 
-            let angle = 0;
-            const angleStep = (2 * Math.PI) / petals;
+        // 播放音乐
+        window.onload = () => {
+            music.play().catch((error) => {
+                console.log("自动播放被阻止。用户需要手动播放音乐。");
+            });
+        };
 
-            // 绘制花瓣
-            for (let i = 0; i < petals; i++) {
-                const petalAngle = angle + i * angleStep;
-                const petalX = centerX + Math.cos(petalAngle) * maxRadius;
-                const petalY = centerY + Math.sin(petalAngle) * maxRadius;
+        // 计算点
+        function calc(a, b, c, d) {
+            let j, n, o, w, z;
 
-                ctx.save();
-                ctx.translate(petalX, petalY);
-                ctx.rotate(petalAngle);
-                ctx.beginPath();
-                ctx.ellipse(0, 0, 60, 150, 0, 0, 2 * Math.PI);
-                ctx.fillStyle = `rgba(255, 0, 0, ${0.5 + Math.random() * 0.5})`;
-                ctx.fill();
-                ctx.restore();
+            if (c > 60) { // 花柄
+                d.x = Math.sin(a * 7) * (13 + 5 / (0.2 + Math.pow(b * 4, 4))) - Math.sin(b) * 50;
+                d.y = b * rosesize + 50;
+                d.z = 625 + Math.cos(a * 7) * (13 + 5 / (0.2 + Math.pow(b * 4, 4))) + b * 400;
+                d.r = a * 1 - b / 2;
+                d.g = a;
+                return true;
             }
-
-            // 绘制花蕊
-            ctx.beginPath();
-            ctx.arc(centerX, centerY, 40, 0, 2 * Math.PI);
-            const gradient = ctx.createRadialGradient(centerX, centerY, 10, centerX, centerY, 40);
-            gradient.addColorStop(0, '#ffff00');
-            gradient.addColorStop(1, '#ffcc00');
-            ctx.fillStyle = gradient;
-            ctx.fill();
-
-            // 添加轻微动画（脉动效果）
-            let scale = 1;
-            let growing = true;
-
-            function animate() {
-                ctx.clearRect(0, 0, roseCanvas.width, roseCanvas.height);
-
-                // 绘制花瓣
-                for (let i = 0; i < petals; i++) {
-                    const petalAngle = angle + i * angleStep;
-                    const petalX = centerX + Math.cos(petalAngle) * maxRadius;
-                    const petalY = centerY + Math.sin(petalAngle) * maxRadius;
-
-                    ctx.save();
-                    ctx.translate(petalX, petalY);
-                    ctx.rotate(petalAngle);
-                    ctx.scale(scale, scale);
-                    ctx.beginPath();
-                    ctx.ellipse(0, 0, 60, 150, 0, 0, 2 * Math.PI);
-                    ctx.fillStyle = `rgba(255, 0, 0, ${0.5 + Math.random() * 0.5})`;
-                    ctx.fill();
-                    ctx.restore();
+            let A = a * 2 - 1;
+            let B = b * 2 - 1;
+            if (A * A + B * B < 1) { // 绿叶
+                if (c > 37) {
+                    j = (Math.floor(c) & 1) ? 6 : 4;
+                    n = j ? 6 : 4;
+                    o = 0.5 / (a + 0.01) + Math.cos(b * 125) * 3 - a * 300;
+                    w = b * h;
+                    d.x = o * Math.cos(n) + w * Math.sin(n) + (j ? 610 : -390);
+                    d.y = o * Math.sin(n) - w * Math.cos(n) + 550 - j * 350;
+                    d.z = 1180 + Math.cos(B + A) * 99 - j * 300;
+                    d.r = 0.4 - a * 0.1 + Math.pow(1 - B * B, -h * 6) * 0.15 - a * b * 0.4 + Math.cos(a + b) / 5 +
+                          Math.pow(Math.cos((o * (a + 1) + (B > 0 ? w : -w)) / 25), 30) * 0.1 * (1 - B * B);
+                    d.g = o / 1000 + 0.7 - o * w * 0.000003;
+                    return true;
                 }
 
-                // 绘制花蕊
-                ctx.beginPath();
-                ctx.arc(centerX, centerY, 40 * scale, 0, 2 * Math.PI);
-                const gradientPulse = ctx.createRadialGradient(centerX, centerY, 10 * scale, centerX, centerY, 40 * scale);
-                gradientPulse.addColorStop(0, '#ffff00');
-                gradientPulse.addColorStop(1, '#ffcc00');
-                ctx.fillStyle = gradientPulse;
-                ctx.fill();
-
-                // 更新脉动效果
-                if (growing) {
-                    scale += 0.005;
-                    if (scale >= 1.05) growing = false;
-                } else {
-                    scale -= 0.005;
-                    if (scale <= 0.95) growing = true;
+                if (c > 32) { // 花萼
+                    c = c * 1.16 - 0.15;
+                    o = a * 45 - 20;
+                    w = b * b * h;
+                    z = o * Math.sin(c) + w * Math.cos(c) + 620;
+                    d.x = o * Math.cos(c) - w * Math.sin(c);
+                    d.y = 28 + Math.cos(B * 0.5) * 99 - Math.pow(b, 3) * 60 - z / 2 - h;
+                    d.z = z;
+                    d.r = (Math.pow(b, 2) * 0.3 + Math.pow((1 - (A * A)), 7) * 0.15 + 0.3) * b;
+                    d.g = b * 0.7;
+                    return true;
                 }
 
-                // 继续动画
-                requestAnimationFrame(animate);
+                // 花朵
+                o = A * (2 - b) * (80 - c * 2);
+                w = 99 - Math.cos(A) * 120 - Math.cos(b) * (-h - c * 4.9) + Math.cos(Math.pow(1 - b, 7)) * 50 + c * 2;
+                z = o * Math.sin(c) + w * Math.cos(c) + 700;
+                d.x = o * Math.cos(c) - w * Math.sin(c);
+                d.y = B * 99 - Math.cos(Math.pow(b, 7)) * 50 - c / 3 - z / 1.35 + 450;
+                d.z = z;
+                d.r = (1 - b / 1.2) * 0.9 + a * 0.1;
+                d.g = Math.pow((1 - b), 20) / 4 + 0.05;
+                return true;
             }
 
-            animate();
+            return false;
         }
+
+        // 主渲染循环
+        function render() {
+            for (let j = 0; j < 10000; j++) {
+                const a = Math.random();
+                const b = Math.random();
+                const c = (Math.floor(Math.random() * 46)) / 0.74;
+                const dot = new DOT();
+
+                if (calc(a, b, c, dot)) {
+                    const z = Math.round(dot.z + 0.5);
+                    const x = Math.round(dot.x * rosesize / z - h + 0.5) + canvas.width / 2;
+                    const y = Math.round(dot.y * rosesize / z - h + 0.5) + canvas.height / 2;
+
+                    if (y > canvas.height || y < 0 || x > canvas.width || x < 0) continue;
+
+                    const zBufferIndex = y * canvas.width + x;
+
+                    if (z < zBuffer[zBufferIndex]) {
+                        zBuffer[zBufferIndex] = z;
+
+                        // 颜色计算
+                        let r = ~Math.round(dot.r * h);
+                        r = Math.max(0, Math.min(255, r));
+
+                        let g = ~Math.round(dot.g * h);
+                        g = Math.max(0, Math.min(255, g));
+
+                        let blue = ~Math.round((dot.r * dot.r * -80));
+                        blue = Math.max(0, Math.min(255, blue));
+
+                        ctx.fillStyle = `rgb(${r}, ${g}, ${blue})`;
+                        ctx.fillRect(x, y, 1, 1);
+                    }
+                }
+            }
+
+            // 递归调用渲染函数
+            requestAnimationFrame(render);
+        }
+
+        // 初始化渲染
+        render();
+
+        // 调整窗口大小时更新Canvas尺寸和Z-buffer
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            // 重置Z-buffer
+            for (let i = 0; i < zBuffer.length; i++) {
+                zBuffer[i] = Infinity;
+            }
+        });
     </script>
 </body>
 </html>
