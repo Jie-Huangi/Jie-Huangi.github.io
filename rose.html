@@ -11,7 +11,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(135deg, #ffcccc, #ffe6e6); /* 渐变背景 */
+            background: linear-gradient(135deg, #ffe6e6, #ffcccc); /* 渐变背景 */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
         }
@@ -24,143 +24,134 @@
 
         .rose {
             position: relative;
-            width: 200px;
-            height: 200px;
+            width: 250px;
+            height: 250px;
             display: none; /* 初始隐藏玫瑰 */
+            animation: pulse 3s infinite alternate;
         }
-
         .rose.show {
             display: block; /* 显示玫瑰 */
         }
 
-       .rose-points {
-         position: absolute;
-           width: 100%;
-         height: 100%;
-         pointer-events: none;
-        }
-
-        .rose-point {
-            position: absolute;
-             width: 6px;
-             height: 6px;
-              background-color: #ff0000;
-               border-radius: 50%;
-                 opacity: 0.7;
-            box-shadow: 0 0 3px rgba(255,0,0,0.5)
-            animation: pulse-point 1.5s infinite alternate;
-        }
-
-         @keyframes pulse-point {
-             0% { transform: scale(1); }
-             100% { transform: scale(1.2); }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
         }
 
         .stem {
             position: absolute;
             width: 6px;
-            height: 150px;
+            height: 200px;
             background: linear-gradient(to bottom, #228B22, #006400); /* 渐变绿色茎 */
-            bottom: -150px;
-            left: 97px;
+            bottom: -200px;
+            left: 122px;
             border-radius: 3px;
             box-shadow: 0 0 5px rgba(0,0,0,0.3);
-             z-index: 1;
         }
 
-         .leaf {
+        .leaf {
             position: absolute;
-            width: 40px;
-            height: 20px;
+            width: 50px;
+            height: 25px;
             background: linear-gradient(to right, #228B22, #32CD32);
-            border-radius: 20px 20px 0 20px;
-             opacity: 0.85;
-             box-shadow: inset -2px -2px 5px rgba(0,0,0,0.2);
-         }
+            border-radius: 25px 25px 0 25px;
+            opacity: 0.85;
+            box-shadow: inset -2px -2px 5px rgba(0,0,0,0.2);
+        }
 
-          .leaf.left {
-             top: 60px;
-             left: -30px;
+        .leaf.left {
+            top: 80px;
+            left: -35px;
             transform: rotate(-30deg);
-          }
+        }
 
-           .leaf.right {
-            top: 100px;
-            left: 130px;
-             transform: rotate(30deg);
-         }
+        .leaf.right {
+            top: 140px;
+            left: 175px;
+            transform: rotate(30deg);
+        }
 
         .petal {
             position: absolute;
-            width: 50px;
-            height: 50px;
-           background: radial-gradient(circle at 30% 30%, #ff0000, #cc0000);
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at 30% 30%, #ff0000, #cc0000);
             border-radius: 50%;
-           opacity: 0.7;
+            opacity: 0.95;
             box-shadow: inset -3px -3px 8px rgba(0,0,0,0.3);
-              transform-origin: center;
-             transition: transform 0.3s;
-              z-index: 1; /* 让花瓣在点之下 */
-         }
-
-          .petal:hover {
-           transform: scale(1.1) rotate(0deg);
+            transform-origin: center;
+            transition: transform 0.3s;
         }
 
+        .petal:hover {
+            transform: scale(1.1) rotate(0deg);
+        }
 
-          .petal:nth-child(1) { top: 10px; left: 80px; }
-          .petal:nth-child(2) { top: 50px; left: 140px;  }
-           .petal:nth-child(3) { top: 120px; left: 140px;}
-            .petal:nth-child(4) { top: 160px; left: 80px; }
-             .petal:nth-child(5) { top: 120px; left: 20px; }
-             .petal:nth-child(6) { top: 50px; left: 20px; }
+        /* 增加更多花瓣以使玫瑰更饱满 */
+        .petal:nth-child(4) { top: 20px; left: 85px; transform: rotate(0deg); z-index: 1; }
+        .petal:nth-child(5) { top: 10px; left: 120px; transform: rotate(45deg); z-index: 2; }
+        .petal:nth-child(6) { top: 50px; left: 160px; transform: rotate(90deg); z-index: 1; }
+        .petal:nth-child(7) { top: 100px; left: 140px; transform: rotate(135deg); z-index: 2; }
+        .petal:nth-child(8) { top: 140px; left: 120px; transform: rotate(180deg); z-index: 1; }
+        .petal:nth-child(9) { top: 100px; left: 80px; transform: rotate(-135deg); z-index: 2; }
+        .petal:nth-child(10) { top: 50px; left: 40px; transform: rotate(-90deg); z-index: 1; }
+        .petal:nth-child(11) { top: 10px; left: 80px; transform: rotate(-45deg); z-index: 2; }
+        .petal:nth-child(12) { top: 30px; left: 110px; transform: rotate(15deg); z-index: 3; }
+        .petal:nth-child(13) { top: 70px; left: 160px; transform: rotate(60deg); z-index: 2; }
+        .petal:nth-child(14) { top: 110px; left: 160px; transform: rotate(105deg); z-index: 1; }
+        .petal:nth-child(15) { top: 150px; left: 110px; transform: rotate(150deg); z-index: 2; }
+        .petal:nth-child(16) { top: 110px; left: 60px; transform: rotate(-150deg); z-index: 1; }
+        .petal:nth-child(17) { top: 70px; left: 60px; transform: rotate(-105deg); z-index: 2; }
+        .petal:nth-child(18) { top: 30px; left: 60px; transform: rotate(-60deg); z-index: 1; }
 
-          .center {
-             position: absolute;
-              width: 40px;
-              height: 40px;
-              background: radial-gradient(circle at 30% 30%, #ffff00, #ffcc00);
-              border-radius: 50%;
-            top: 80px;
-            left: 80px;
+        .center {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 30% 30%, #ffff00, #ffcc00);
+            border-radius: 50%;
+            top: 100px;
+            left: 100px;
             box-shadow: inset -2px -2px 5px rgba(0,0,0,0.2);
-              z-index: 2;
-         }
-          .name-container {
-             margin-top: 40px;
-             display: flex;
+            z-index: 3;
+        }
+
+        .name-container {
+            margin-top: 50px;
+            display: flex;
             flex-direction: column;
             align-items: center;
-             animation: fadeIn 2s;
-         }
+            animation: fadeIn 2s;
+        }
         .name-input {
             margin-bottom: 15px;
             padding: 12px 16px;
             border: 2px solid #ff0000;
-             border-radius: 8px;
+            border-radius: 8px;
             font-size: 1.1em;
             outline: none;
             transition: border-color 0.3s, box-shadow 0.3s;
-             width: 250px;
-           max-width: 80%;
+            width: 300px;
+            max-width: 90%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .name-input:focus {
             border-color: #cc0000;
-           box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+            box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
         }
         .name-display {
-           font-size: 1.8em;
-             color: #cc0000;
+            font-size: 2em;
+            color: #cc0000;
             margin-top: 10px;
             font-weight: bold;
-             text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
 
-         .prompt-message {
-           font-size: 1.8em;
-           color: #cc0000;
-             margin-bottom: 20px;
-             text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        .prompt-message {
+            font-size: 2em;
+            color: #cc0000;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
 
         @keyframes fadeIn {
@@ -170,65 +161,83 @@
 
         @media screen and (max-width: 600px) {
             .rose {
-               width: 150px;
-               height: 150px;
-             }
-             .stem {
-                 width: 4px;
-                 height: 100px;
-                 left: 73px;
-             }
-             .leaf {
-                width: 30px;
-                height: 15px;
-             }
-             .petal {
-                 width: 40px;
-               height: 40px;
-           }
-             .center {
-                 width: 30px;
-                 height: 30px;
-                 top: 60px;
-                left: 60px;
-             }
-             .petal:nth-child(1) { top: 8px; left: 60px;}
-             .petal:nth-child(2) { top: 38px; left: 105px;}
-             .petal:nth-child(3) { top: 90px; left: 105px;}
-           .petal:nth-child(4) { top: 120px; left: 60px;}
-           .petal:nth-child(5) { top: 90px; left: 15px;}
-           .petal:nth-child(6) { top: 38px; left: 15px;}
-
-           .name-input {
-               padding: 10px 14px;
-                font-size: 1em;
-              width: 200px;
+                width: 200px;
+                height: 200px;
             }
-           .name-display {
-               font-size: 1.5em;
-           }
-             .prompt-message {
+            .stem {
+                width: 4px;
+                height: 150px;
+                left: 98px;
+            }
+            .leaf {
+                width: 40px;
+                height: 20px;
+            }
+            .petal {
+                width: 60px;
+                height: 60px;
+            }
+            .center {
+                width: 40px;
+                height: 40px;
+                top: 80px;
+                left: 80px;
+            }
+            /* 调整花瓣位置 */
+            .petal:nth-child(4) { top: 15px; left: 65px; }
+            .petal:nth-child(5) { top: 8px; left: 90px; }
+            .petal:nth-child(6) { top: 40px; left: 130px; }
+            .petal:nth-child(7) { top: 80px; left: 110px; }
+            .petal:nth-child(8) { top: 120px; left: 90px; }
+            .petal:nth-child(9) { top: 80px; left: 40px; }
+            .petal:nth-child(10) { top: 40px; left: 0px; }
+            .petal:nth-child(11) { top: 8px; left: 40px; }
+            .petal:nth-child(12) { top: 25px; left: 75px; }
+            .petal:nth-child(13) { top: 55px; left: 110px; }
+            .petal:nth-child(14) { top: 95px; left: 110px; }
+            .petal:nth-child(15) { top: 135px; left: 75px; }
+            .petal:nth-child(16) { top: 95px; left: 30px; }
+            .petal:nth-child(17) { top: 55px; left: 30px; }
+            .petal:nth-child(18) { top: 25px; left: 30px; }
+
+            .name-input {
+                padding: 10px 14px;
+                font-size: 1em;
+                width: 200px;
+            }
+            .name-display {
                 font-size: 1.5em;
-             }
+            }
+            .prompt-message {
+                font-size: 1.5em;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="prompt-message" id="promptMessage">请输入你的名字</div>
-      <div class="rose">
-          <div class="rose-points" id="rosePoints"></div>
-          <div class="stem"></div>
-         <div class="leaf left"></div>
-         <div class="leaf right"></div>
-          <div class="petal"></div>
-          <div class="petal"></div>
-          <div class="petal"></div>
-          <div class="petal"></div>
-           <div class="petal"></div>
-           <div class="petal"></div>
-          <div class="center"></div>
-     </div>
+        <div class="rose">
+            <div class="stem"></div>
+            <div class="leaf left"></div>
+            <div class="leaf right"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="center"></div>
+        </div>
         <div class="name-container">
             <input type="text" class="name-input" placeholder="输入名字" id="nameInput">
             <div class="name-display" id="nameDisplay"></div>
@@ -239,50 +248,17 @@
         const nameDisplay = document.getElementById('nameDisplay');
         const rose = document.querySelector('.rose');
         const promptMessage = document.getElementById('promptMessage');
-        const rosePoints = document.getElementById('rosePoints');
-
-
-     function createRosePoints() {
-        const points = [
-           {x: 100, y: 0},   // 最上方的点
-             { x: 180, y: 20 },
-            { x: 200, y: 70 }, // 右上
-            { x: 190, y: 120 },//右上
-            { x: 170, y: 160 }, // 右下
-            { x: 140, y: 180 },
-            { x: 100, y: 190 },
-            { x: 60, y: 180 },//左下
-          { x: 30, y: 160 },//左下
-           { x: 10, y: 120 },//左下
-            { x: 0, y: 70 },//左上
-           { x: 20, y: 20 }  //左上
-        ];
-
-           points.forEach(point => {
-              const pointElement = document.createElement('div');
-             pointElement.classList.add('rose-point');
-            pointElement.style.left = `${point.x -3}px`;
-             pointElement.style.top = `${point.y -3}px`;
-            rosePoints.appendChild(pointElement);
-            });
-      }
-
-
         nameInput.addEventListener('input', () => {
-            if (nameInput.value.trim() !== "") {
+            if(nameInput.value.trim() !== ""){
                 nameDisplay.textContent = `送给: ${nameInput.value}`;
                 rose.classList.add('show');
                 promptMessage.style.display = 'none'; //隐藏初始提示
-                createRosePoints()
-
-             } else {
+            } else {
                 rose.classList.remove('show');
                 nameDisplay.textContent = '';
                 promptMessage.style.display = 'block'; //显示初始提示
-                rosePoints.innerHTML = ''; //清空动态点
-           }
+            }
         });
-
     </script>
 </body>
 </html>
