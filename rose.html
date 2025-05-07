@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>电子玫瑰</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffe6e6, #ffcccc);
+        }
+
+       .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100%;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: justify-content 0.5s ease-in-out;
+        }
+
+       .input-container {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+       .prompt-message {
+            font-size: 1.5em;
+            color: #cc0000;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+       .name-input {
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border: 2px solid #ff0000;
+            border-radius: 8px;
+            font-size: 1.1em;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+       .name-input:focus {
+            border-color: #cc0000;
+            box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+        }
+
+       .confirm-button {
+            padding: 10px 20px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+       .confirm-button:hover {
+            background-color: #cc0000;
+        }
+
+        #roseCanvas {
+            display: none;
+            /* 初始隐藏Canvas */
+            position: absolute;
+            /* 绝对定位 */
+            top: 50%;
+            /* 垂直居中 */
+            left: 50%;
+            /* 水平居中 */
+            transform: translate(-50%, -50%);
+            /* 使用 transform 来精确居中 */
+            background: transparent;
+            border-radius: 50%;
+            /* 圆形 */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+           .input-container {
+                max-width: 90%;
+            }
+
+           .prompt-message {
+                font-size: 1.2em;
+            }
+
+           .name-input {
+                font-size: 1em;
+            }
+
+           .confirm-button {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div class="input-container" id="inputContainer">
+            <div class="prompt-message">请输入你的名字</div>
+            <input type="text" class="name-input" placeholder="输入名字" id="nameInput">
+            <button class="confirm-button" id="confirmButton">确定</button>
+        </div>
+        <canvas id="roseCanvas"></canvas>
+    </div>
+
+    <script>
+        const nameInput = document.getElementById('nameInput');
+        const confirmButton = document.getElementById('confirmButton');
+        const inputContainer = document.getElementById('inputContainer');
+        const roseCanvas = document.getElementById('roseCanvas');
+        const ctx = roseCanvas.getContext('2d');
+        const container = document.getElementById('container');
+
+        // 设置Canvas尺寸为窗口的一部分，确保居中
+        function resizeCanvas() {
+            const size = Math.min(window.innerWidth, window.innerHeight) * 0.8;
+            roseCanvas.width = size;
+            roseCanvas.height = size;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // 定义结构体
+        class DOT {
+            constructor(x = 0, y = 0, z = 0, r = 0, g = 0) {
+                this.x = x;
+                this.y = y;
+                this.z = z;
+                this.r = r;
+                this.g = g;
+            }
+        }
+
+        // 初始化Z-buffer
+        let zBuffer;
+
+        // 玫瑰参数
+        const rosesize = 500;
+        const h = -250;
+
+        // 点计算函数
+        function calc(a, b, c, d) {
+            let j, n, o, w, z;
+
+            if (c > 60) { // 花柄
+                d.x = Math.sin(a * 7) * (13 + 5 / (0.2 + Math.pow(b * 4, 4))) - Math.sin(b) * 50;
+                d.y = b * rosesize + 50;
+                d.z = 625 + Math.cos(a * 7) * (13 + 5 / (0.2 + Math.pow(b * 4, 4))) + b * 400;
+                d.r = a * 1 - b / 2;
+                d.g = a;
+                return true;
+            }
+            let A = a * 2 - 1;
+            let B = b * 2 - 1;
+            if (A * A + B * B < 1) { // 绿叶
+                if (c > 37) {
+                    j = (Math.floor(c) & 1);
+                    n = j? 6 : 4;
+                    o = 0.5 / (a + 0.01) + Math.cos(b * 125) * 3 - a * 300;
+                    w = b * h;
+                    d.x = o * Math.cos(n) + w * Math.sin(n) + j * 610 - 390;
+                    d.y = o * Math.sin(n) - w * Math.cos(n) + 550 - j * 350;
+                    d.z = 1180 + Math.cos(B + A) * 99 - j * 300;
+                    d.r = 0.4 - a * 0.1 + Math.pow(1 - B * B, -h * 6) * 0.15 - a * b * 0.4 + Math.cos(a + b) / 5 +
+                        Math.pow(Math.cos((o * (a + 1) + (B > 0? w : -w)) / 25), 30) * 0.1 * (1 - B * B);
+                    d.g = o / 1000 + 0.7 - o * w * 0.000003;
+                    return true;
+                }
+
+                if (c > 32) { // 花萼
+                    c = c * 1.16 - 0.15;
+                    o = a * 45 - 20;
+                    w = b * b * h;
+                    z = o * Math.sin(c) + w * Math.cos(c) + 620;
+                    d.x = o * Math.cos(c) - w * Math.sin(c);
+                    d.y = 28 + Math.cos(B * 0.5) * 99 - Math.pow(b, 3) * 60 - z / 2 - h;
+                    d.z = z;
+                    d.r = (Math.pow(b, 2) * 0.3 + Math.pow((1 - (A * A)), 7) * 0.15 + 0.3) * b;
+                    d.g = b * 0.7;
+                    return true;
+                }
+
+                // 花朵
+                o = A * (2 - b) * (80 - c * 2);
+                w = 99 - Math.cos(A) * 120 - Math.cos(b) * (-h - c * 4.9) + Math.cos(Math.pow(1 - b, 7)) * 50 + c * 2;
+                z = o * Math.sin(c) + w * Math.cos(c) + 700;
+                d.x = o * Math.cos(c) - w * Math.sin(c);
+                d.y = B * 99 - Math.cos(Math.pow(b, 7)) * 50 - c / 3 - z / 1.35 + 450;
+                d.z = z;
+                d.r = (1 - b / 1.2) * 0.9 + a * 0.1;
+                d.g = Math.pow((1 - b), 20) / 4 + 0.05;
+                return true;
+            }
+
+            return false;
+        }
+
+        // 主渲染函数
+        function render() {
+            for (let j = 0; j < 10000; j++) {
+                const a = Math.random();
+                const b = Math.random();
+                const c = (Math.floor(Math.random() * 46)) / 0.74;
+                const dot = new DOT();
+
+                if (calc(a, b, c, dot)) {
+                    const z = Math.round(dot.z + 0.5);
+                    const x = Math.round(dot.x * rosesize / z) + roseCanvas.width / 2;  // 关键修改，去掉-h偏移量相关部分
+                    const y = Math.round(dot.y * rosesize / z) + roseCanvas.height / 2;  // 关键修改，去掉-h偏移量相关部分
+
+                    if (y > roseCanvas.height || y < 0 || x > roseCanvas.width || x < 0) continue;
+
+                    const zBufferIndex = y * roseCanvas.width + x;
+
+                    if (z < zBuffer[zBufferIndex]) {
+                        zBuffer[zBufferIndex] = z;
+
+                        // 颜色计算
+                        let r = ~Math.round(dot.r * h);
+                        r = Math.max(0, Math.min(255, r));
+
+                        let g = ~Math.round(dot.g * h);
+                        g = Math.max(0, Math.min(255, g));
+
+                        let blue = ~Math.round((dot.r * dot.r * -80));
+                        blue = Math.max(0, Math.min(255, blue));
+
+                        ctx.fillStyle = `rgb(${r}, ${g}, ${blue})`;
+                        ctx.fillRect(x, y, 1, 1);
+                    }
+                }
+            }
+
+            // 递归调用渲染函数
+            requestAnimationFrame(render);
+        }
+
+
+        // 处理确认按钮点击
+        confirmButton.addEventListener('click', () => {
+            const name = nameInput.value.trim();
+            if (name!== "") {
+                // 隐藏输入区域
+                inputContainer.style.display = 'none';
+
+                // 更改容器对齐方式为center
+                container.style.justifyContent = 'center';
+
+                // 显示Canvas
+                roseCanvas.style.display = 'block';
+
+                // 初始化Z-buffer
+                zBuffer = new Float32Array(roseCanvas.width * roseCanvas.height).fill(Infinity);
+
+
+                // 开始渲染
+                render();
+            } else {
+                alert("请输入一个名字！");
+            }
+        });
+
+        // 允许按回车键提交
+        nameInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                confirmButton.click();
+            }
+        });
+    </script>
+</body>
+
+</html>
