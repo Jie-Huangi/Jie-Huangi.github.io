@@ -1,0 +1,113 @@
+email: jiehuang0910@163.com
+cv: /files/JieHuang-CV.pdf
+
+stats:
+  - value: "5"
+    label_zh: 一作论文
+    label_en: First-author papers
+  - value: "2"
+    label_zh: SCI 一区 TOP
+    label_en: SCI Q1 TOP
+  - value: "7+"
+    label_zh: 期刊审稿
+    label_en: Journal reviews
+
+education:
+  - period_zh: 2021.09 — 至今
+    period_en: 2021.09 — Present
+    school_zh: 山东理工大学
+    school_en: Shandong University of Technology
+    detail_zh: 农业工程与食品科学学院 · 硕博连读 · 视觉感知 / 精准作业
+    detail_en: School of Agricultural Engineering and Food Science · Combined M.S.–Ph.D. · Vision perception / Precision operations
+  - period_zh: — 2021
+    period_en: — 2021
+    school_zh: 重庆文理学院
+    school_en: Chongqing University of Arts and Sciences
+    detail_zh: 智能制造工程学院 · 机械电子工程 · 工学学士
+    detail_en: School of Intelligent Manufacturing Engineering · Mechatronic Engineering · B.E.
+
+papers:
+  - year: 2025
+    journal: "Engineering Applications of Artificial Intelligence"
+    venue: "142: 109923"
+    authors: "Jie Huang, Xiangyou Wang, Chengqian Jin, Fernando Auat Cheein, and Xinyu Yang"
+    title: "Estimation of the Orientation of Potatoes and Detection Bud Eye Position Using Potato Orientation Detection You Only Look Once with Fast and Accurate Features for the Movement Strategy of Intelligent Cutting Robots"
+    doi: "https://doi.org/10.1016/j.engappai.2024.109923"
+    pdf: "/images/papers/EAAI-2025.pdf"
+  - year: 2025
+    journal: "Computers and Electronics in Agriculture"
+    venue: "237: 110716"
+    authors: "Jie Huang, Fangxuan Yi, Yingjun Cui, Xiangyou Wang, Chengqian Jin, and Fernando Auat Cheein"
+    title: "Design and Implementation of a Seed Potato Cutting Robot Using Deep Learning and Delta Robotic System with Accuracy and Speed for Automated Processing of Agricultural Products"
+    doi: "https://doi.org/10.1016/j.compag.2025.110716"
+  - year: 2025
+    journal: "Journal of Field Robotics"
+    venue: "rob.70126"
+    authors: "Jie Huang, Xiangyou Wang, Chengqian Jin, and Fernando Auat Cheein"
+    title: "Design and Performance Analysis of a Delta Robot for High-Speed Seed Cutting"
+    doi: "https://doi.org/10.1002/rob.70126"
+  - year: 2025
+    journal: "INMATEH Agricultural Engineering"
+    venue: "77: 1145"
+    authors: "Jie Huang, Xiangyou Wang, Fernando Auat Cheein, and Chengqian Jin"
+    title: "SPADE: A Deep Learning Framework For Automated Seed Potato Cutting"
+    doi: "https://doi.org/10.35633/inmateh-77-92"
+  - year: 2023
+    journal: "Transactions of the Chinese Society of Agricultural Engineering"
+    journal_zh: "农业工程学报"
+    venue: "39: 172–82"
+    authors: "Jie Huang, Xiangyou Wang, Haitao Wu, Shuwei Liu, Xiaonan Yang, and Weilong Liu"
+    title: "Detecting Potato Seed Bud Eye Using Lightweight Convolutional Neural Network (CNN)"
+    title_zh: "基于轻量型卷积神经网络的马铃薯种薯芽眼检测算法"
+    doi: "http://www.tcsae.org/cn/article/doi/10.11975/j.issn.1002-6819.202303035"
+    pdf: "/images/papers/基于轻量型卷积神经网络的马铃薯种薯芽眼检测算法.pdf"
+
+journals_reviewed:
+  - Computers and Electronics in Agriculture
+  - Engineering Applications of Artificial Intelligence
+  - LWT
+  - Current Research in Food Science
+  - Smart Agricultural Technology
+  - Journal of Cleaner Production
+  - Industrial Crops & Products
+
+zh:
+  tagline: 机器人视觉感知 · 精准作业
+  switch_label: 中文
+  intro: >
+    黄杰，男，1998 年 2 月出生，重庆市开州区人，本科机械电子工程专业。
+    现于山东理工大学攻读博士学位（博士三年级）。
+    主要从事机器人视觉感知、精准作业等领域的研究。
+    硕博连读期间，以第一作者身份发表相关学术论文 5 篇，其中 SCI 一区 TOP 期刊 2 篇（IF 分别为 8.0、8.9），SCI 二区 1 篇，中文领军 EI 及英文 EI 各 1 篇。
+  sections:
+    education: 教育经历
+    papers: 代表性论文
+    review: 期刊审稿
+    follow: 关注我
+  published: 已发表
+  pdf: PDF
+  doi: 链接
+  download_cv: 下载简历
+  email: 邮箱
+
+en:
+  tagline: Robot vision · Precision operations
+  switch_label: EN
+  intro: >
+    Jie Huang (b. February 1998, Kaizhou, Chongqing) received the B.E. degree in
+    Mechatronic Engineering. He is currently a third-year Ph.D. student
+    (combined Master–Ph.D.) at Shandong University of Technology.
+    His research focuses on robotic vision perception and precision operations.
+    As first author, he has published five papers, including two SCI Q1 TOP
+    journals (IF 8.0 and 8.9), one SCI Q2 paper, and two EI-indexed papers
+    (one Chinese leading venue and one English EI).
+  sections:
+    education: Education
+    papers: Selected publications
+    review: Journal reviewer
+    follow: Follow me
+  published: Published
+  pdf: PDF
+  doi: Link
+  download_cv: Download CV
+  email: Email
