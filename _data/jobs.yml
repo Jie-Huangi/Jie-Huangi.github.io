@@ -1,0 +1,29 @@
+updated: "2026-07-15"
+items:
+  - company: 小鹏
+    status: rejected
+    progress: "7/12 投递 → 7/14 拒绝"
+  - company: 大疆
+    status: assessed
+    progress: "7/12 投递 → 7/15 完成测评"
+  - company: 歌尔
+    status: waiting
+    progress: "7/12 投递"
+  - company: 502所
+    status: waiting
+    progress: "7/12 投递"
+  - company: 1院14所
+    status: waiting
+    progress: "7/12 投递"
+  - company: 航天9院上海
+    status: waiting
+    progress: "7/12 投递"
+  - company: 智元
+    status: waiting
+    progress: "7/15 投递"
+  - company: 蔚来
+    status: waiting
+    progress: "7/15 投递"
+  - company: OPPO
+    status: waiting
+    progress: "7/15 投递"

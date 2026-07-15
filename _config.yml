@@ -18,6 +18,8 @@ menu:
     url: https://github.com/Jie-Huangi
   - title: 'RSS'
     url: '/feed.xml'
+  - title: 'Jobs'
+    url: '/jobs/'
 
 timezone:    Africa/El_Aaiun
 locale:      zh_CN
