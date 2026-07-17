@@ -8,6 +8,7 @@ hideHomeActive: true
 {% assign jobs = site.data.jobs.items %}
 {% assign rejected = jobs | where: "status", "rejected" %}
 {% assign assessed = jobs | where: "status", "assessed" %}
+{% assign interview = jobs | where: "status", "interview" %}
 {% assign waiting = jobs | where: "status", "waiting" %}
 
 <div class="jobs-board">
@@ -21,6 +22,10 @@ hideHomeActive: true
     <div class="jobs-stat jobs-stat--assessed">
       <span class="jobs-stat__num">{{ assessed.size }}</span>
       <span class="jobs-stat__label">● 已测评</span>
+    </div>
+    <div class="jobs-stat jobs-stat--interview">
+      <span class="jobs-stat__num">{{ interview.size }}</span>
+      <span class="jobs-stat__label">◆ 已面试</span>
     </div>
     <div class="jobs-stat jobs-stat--waiting">
       <span class="jobs-stat__num">{{ waiting.size }}</span>
@@ -36,6 +41,8 @@ hideHomeActive: true
       <span class="jobs-badge jobs-badge--rejected">❌ 已拒</span>
       {% elsif job.status == 'assessed' %}
       <span class="jobs-badge jobs-badge--assessed">● 已测评</span>
+      {% elsif job.status == 'interview' %}
+      <span class="jobs-badge jobs-badge--interview">◆ 已面试</span>
       {% else %}
       <span class="jobs-badge jobs-badge--waiting">○ 等待中</span>
       {% endif %}
