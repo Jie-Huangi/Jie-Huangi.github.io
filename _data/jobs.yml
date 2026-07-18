@@ -1,4 +1,4 @@
-updated: "2026-07-17"
+updated: "2026-07-18"
 items:
   - company: 小鹏
     status: rejected
@@ -36,3 +36,21 @@ items:
   - company: 京东
     status: waiting
     progress: "7/16 投递"
+  - company: 库玛
+    status: waiting
+    progress: "7/18 投递"
+  - company: 松延动力
+    status: waiting
+    progress: "7/18 投递"
+  - company: 卓驭
+    status: waiting
+    progress: "7/18 投递"
+  - company: 元戎启行
+    status: waiting
+    progress: "7/18 投递"
+  - company: 文远知行
+    status: waiting
+    progress: "7/18 投递"
+  - company: 百度
+    status: waiting
+    progress: "7/18 投递"
