@@ -1,4 +1,4 @@
-updated: "2026-07-18"
+updated: "2026-07-19"
 items:
   - company: 小鹏
     status: rejected
@@ -54,3 +54,6 @@ items:
   - company: 百度
     status: waiting
     progress: "7/18 投递"
+  - company: 柏楚电子
+    status: waiting
+    progress: "7/19 投递（提前批）"
