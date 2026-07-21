@@ -1,8 +1,11 @@
-updated: "2026-07-20"
+updated: "2026-07-21"
 items:
   - company: 小鹏
     status: rejected
     progress: "7/12 投递 → 7/14 拒绝"
+  - company: 元戎启行
+    status: rejected
+    progress: "7/18 投递 → 7/21 拒绝（不匹配）"
   - company: 大疆
     status: assessed
     progress: "7/12 投递 → 7/15 完成测评"
@@ -46,9 +49,6 @@ items:
     status: waiting
     progress: "7/18 投递"
   - company: 卓驭
-    status: waiting
-    progress: "7/18 投递"
-  - company: 元戎启行
     status: waiting
     progress: "7/18 投递"
   - company: 文远知行
