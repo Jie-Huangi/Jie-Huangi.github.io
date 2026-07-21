@@ -1,4 +1,4 @@
-updated: "2026-07-19"
+updated: "2026-07-20"
 items:
   - company: 小鹏
     status: rejected
@@ -6,6 +6,9 @@ items:
   - company: 大疆
     status: assessed
     progress: "7/12 投递 → 7/15 完成测评"
+  - company: 汇川
+    status: assessed
+    progress: "7/20 投递 → 7/20 完成测评"
   - company: 长鑫存储技术
     status: interview
     progress: "7/16 投递 → 7/17 AI面试（等结果）"
@@ -57,3 +60,6 @@ items:
   - company: 柏楚电子
     status: waiting
     progress: "7/19 投递（提前批）"
+  - company: ABB
+    status: waiting
+    progress: "7/20 投递"
