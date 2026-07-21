@@ -280,3 +280,20 @@
     }
   }
 }
+
+.about-jobs-link {
+  margin: 1.75em 0 0;
+  padding-top: 1.25em;
+  border-top: 1px solid rgba($base-color, 0.1);
+  @include font-size(15);
+
+  a {
+    color: $info;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

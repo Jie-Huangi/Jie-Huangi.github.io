@@ -89,6 +89,7 @@ zh:
   doi: 链接
   download_cv: 下载简历
   email: 邮箱
+  jobs_link: 查看求职进度 →
 
 en:
   tagline: Robot vision · Precision operations
@@ -111,3 +112,4 @@ en:
   doi: Link
   download_cv: Download CV
   email: Email
+  jobs_link: View job search progress →

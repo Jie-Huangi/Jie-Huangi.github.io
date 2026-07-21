@@ -7,18 +7,18 @@ hideHomeActive: true
 
 {% assign a = site.data.about %}
 
-<div class="about-page" id="about-page" data-lang="zh">
+<div class="about-page" id="about-page" data-lang="en">
   <div class="about-top">
     <div class="about-identity">
       <h2 class="about-name">Jie Huang / 黄杰</h2>
     </div>
     <div class="about-lang-switch" role="group" aria-label="Language">
-      <button type="button" class="about-lang-btn is-active" data-set-lang="zh">{{ a.zh.switch_label }}</button>
-      <button type="button" class="about-lang-btn" data-set-lang="en">{{ a.en.switch_label }}</button>
+      <button type="button" class="about-lang-btn" data-set-lang="zh">{{ a.zh.switch_label }}</button>
+      <button type="button" class="about-lang-btn is-active" data-set-lang="en">{{ a.en.switch_label }}</button>
     </div>
   </div>
 
-  <div class="about-panel about-panel--zh">
+  <div class="about-panel about-panel--zh" hidden>
     <p class="about-tagline">{{ a.zh.tagline }}</p>
     <p class="about-intro">{{ a.zh.intro }}</p>
 
@@ -86,9 +86,13 @@ hideHomeActive: true
         <li><a href="{{ site.url }}{{ a.cv }}" target="_blank" rel="noopener">{{ a.zh.download_cv }}</a></li>
       </ul>
     </section>
+
+    <p class="about-jobs-link">
+      <a href="{{ site.url }}/jobs/">{{ a.zh.jobs_link }}</a>
+    </p>
   </div>
 
-  <div class="about-panel about-panel--en" hidden>
+  <div class="about-panel about-panel--en">
     <p class="about-tagline">{{ a.en.tagline }}</p>
     <p class="about-intro">{{ a.en.intro }}</p>
 
@@ -156,6 +160,10 @@ hideHomeActive: true
         <li><a href="{{ site.url }}{{ a.cv }}" target="_blank" rel="noopener">{{ a.en.download_cv }}</a></li>
       </ul>
     </section>
+
+    <p class="about-jobs-link">
+      <a href="{{ site.url }}/jobs/">{{ a.en.jobs_link }}</a>
+    </p>
   </div>
 </div>
 

@@ -2,13 +2,13 @@
   var root = document.getElementById("about-page");
   if (!root) return;
 
-  var storageKey = "about-lang";
+  var storageKey = "about-lang-v2";
   var buttons = root.querySelectorAll("[data-set-lang]");
   var panelZh = root.querySelector(".about-panel--zh");
   var panelEn = root.querySelector(".about-panel--en");
 
   function setLang(lang) {
-    if (lang !== "zh" && lang !== "en") lang = "zh";
+    if (lang !== "zh" && lang !== "en") lang = "en";
     root.setAttribute("data-lang", lang);
 
     if (panelZh && panelEn) {
@@ -34,7 +34,7 @@
   try {
     saved = localStorage.getItem(storageKey);
   } catch (e) {}
-  setLang(saved || "zh");
+  setLang(saved || "en");
 
   buttons.forEach(function (btn) {
     btn.addEventListener("click", function () {
