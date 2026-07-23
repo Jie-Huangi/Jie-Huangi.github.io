@@ -87,13 +87,13 @@ items:
     status: waiting
     progress: "7/16 投递"
     apply_url: https://campus.jd.com/
-  - company: 库玛
+  - company: 库犸
     location: 深圳
     roles:
       - 感知算法工程师
     status: waiting
     progress: "7/18 投递"
-    apply_url: https://mammotion.jobs.feishu.cn/campus_recruitment
+    apply_url: https://jobs.mammotion.cn/social_recruitment/position/list?location=CT_36%2CCT_128%2CCT_22&functionCategory=7572480573705554203
   - company: 松延动力
     location: 北京
     roles:
