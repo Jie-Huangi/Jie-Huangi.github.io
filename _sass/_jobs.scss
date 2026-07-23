@@ -5,6 +5,15 @@
   margin: 0.5em 0 1.5em;
 }
 
+.jobs-slogan {
+  margin: 0 0 0.35em;
+  @include font-size(18);
+  font-weight: 700;
+  color: $base-color;
+  line-height: 1.45;
+  font-style: italic;
+}
+
 .jobs-intro {
   color: rgba($base-color, 0.65);
   @include font-size(14);
@@ -62,48 +71,87 @@
   }
 }
 
-.jobs-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.jobs-table-wrap {
   border: 1px solid rgba($base-color, 0.1);
   border-radius: 8px;
   overflow: hidden;
   background: $white;
 }
 
+.jobs-table {
+  width: 100%;
+}
+
+.jobs-thead,
 .jobs-row {
   display: grid;
-  grid-template-columns: minmax(88px, 1.1fr) minmax(88px, 0.9fr) minmax(140px, 2fr);
-  gap: 10px 14px;
+  grid-template-columns:
+    minmax(52px, 0.7fr)
+    minmax(88px, 1fr)
+    minmax(140px, 2fr)
+    minmax(88px, 0.9fr)
+    minmax(140px, 1.6fr)
+    minmax(64px, 0.7fr);
+  gap: 8px 12px;
   align-items: center;
-  padding: 12px 16px;
+  padding: 12px 14px;
+}
+
+.jobs-thead {
+  background: rgba($base-color, 0.04);
+  border-bottom: 1px solid rgba($base-color, 0.1);
+}
+
+.jobs-th {
+  @include font-size(13);
+  font-weight: 700;
+  color: rgba($base-color, 0.7);
+}
+
+.jobs-row {
   border-bottom: 1px solid rgba($base-color, 0.08);
-  @include font-size(15);
+  @include font-size(14);
 
   &:last-child {
     border-bottom: 0;
   }
 
   &:nth-child(even) {
-    background: rgba($base-color, 0.02);
-  }
-
-  @media only screen and (max-width: 47.9em) {
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      "company badge"
-      "progress progress";
-
-    .jobs-company { grid-area: company; }
-    .jobs-badge { grid-area: badge; justify-self: end; }
-    .jobs-progress { grid-area: progress; }
+    background: rgba($base-color, 0.015);
   }
 }
 
-.jobs-company {
+.jobs-td {
+  color: rgba($base-color, 0.85);
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.jobs-col-company {
   font-weight: 600;
   color: $base-color;
+}
+
+.jobs-col-location {
+  color: rgba($base-color, 0.7);
+}
+
+.jobs-col-roles {
+  @include font-size(13);
+  color: rgba($base-color, 0.78);
+}
+
+.jobs-col-progress {
+  @include font-size(13);
+  color: rgba($base-color, 0.72);
+}
+
+.jobs-col-status {
+  text-align: center;
+}
+
+.jobs-col-apply {
+  text-align: center;
 }
 
 .jobs-badge {
@@ -111,7 +159,7 @@
   text-align: center;
   padding: 4px 10px;
   border-radius: 999px;
-  @include font-size(13);
+  @include font-size(12);
   font-weight: 600;
   white-space: nowrap;
   line-height: 1.4;
@@ -137,7 +185,71 @@
   }
 }
 
-.jobs-progress {
-  color: rgba($base-color, 0.72);
-  @include font-size(14);
+.jobs-apply-link {
+  color: $info;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  @include font-size(13);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@media only screen and (max-width: 47.9em) {
+  .jobs-thead {
+    display: none;
+  }
+
+  .jobs-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 14px 16px;
+  }
+
+  .jobs-td {
+    width: 100%;
+  }
+
+  .jobs-td::before {
+    content: attr(data-label) "：";
+    color: rgba($base-color, 0.45);
+    font-weight: 600;
+    @include font-size(12);
+  }
+
+  .jobs-col-company {
+    order: 2;
+    @include font-size(16);
+  }
+
+  .jobs-col-location {
+    order: 1;
+  }
+
+  .jobs-col-roles {
+    order: 3;
+  }
+
+  .jobs-col-status {
+    order: 4;
+    text-align: left;
+  }
+
+  .jobs-col-progress {
+    order: 5;
+  }
+
+  .jobs-col-apply {
+    order: 6;
+    text-align: left;
+  }
+
+  .jobs-col-company::before,
+  .jobs-col-location::before {
+    display: none;
+  }
 }

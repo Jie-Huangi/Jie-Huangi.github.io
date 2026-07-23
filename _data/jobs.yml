@@ -1,65 +1,137 @@
-updated: "2026-07-21"
+updated: "2026-07-23"
 items:
   - company: 小鹏
+    location: 广州
+    roles:
+      - 具身控制算法工程师
     status: rejected
     progress: "7/12 投递 → 7/14 拒绝"
+    apply_url: https://campus.xiaopeng.com/
   - company: 元戎启行
+    location: 深圳
+    roles:
+      - 感知算法工程师
     status: rejected
     progress: "7/18 投递 → 7/21 拒绝（不匹配）"
+    apply_url: https://app.mokahr.com/campus-recruitment/deeproute
   - company: 大疆
+    location: 深圳
+    roles:
+      - 端到端决策规划算法工程师
     status: assessed
     progress: "7/12 投递 → 7/15 完成测评"
+    apply_url: https://careers.dji.com/zh-CN/campus
   - company: 汇川
+    location: 苏州
+    roles:
+      - 机器人算法工程师
+      - 视觉AI算法工程师
     status: assessed
     progress: "7/20 投递 → 7/20 完成测评"
+    apply_url: https://inovance.zhiye.com/Campus
   - company: 长鑫存储技术
+    location: 合肥
     status: interview
     progress: "7/16 投递 → 7/17 AI面试（等结果）"
+    apply_url: https://cxmt.zhiye.com
   - company: 歌尔
+    location: 潍坊
     status: waiting
     progress: "7/12 投递"
+    apply_url: https://goertek.hotjob.cn/
   - company: 502所
+    location: 北京
     status: waiting
     progress: "7/12 投递"
+    apply_url: https://www.spacetalent.com.cn/
   - company: 1院14所
+    location: 北京
     status: waiting
     progress: "7/12 投递"
+    apply_url: https://www.spacetalent.com.cn/
   - company: 航天9院上海
+    location: 上海
     status: waiting
     progress: "7/12 投递"
+    apply_url: https://www.spacetalent.com.cn/
   - company: 智元
+    location: 上海
     status: waiting
     progress: "7/15 投递"
+    apply_url: https://agirobot.jobs.feishu.cn/campusrecruitment
   - company: 蔚来
+    location: 上海
+    roles:
+      - 车端大模型与世界模型系统架构工程师
     status: waiting
     progress: "7/15 投递"
+    apply_url: https://campus.nio.com/
   - company: OPPO
+    location: 东莞
     status: waiting
     progress: "7/15 投递"
+    apply_url: https://careers.oppo.com/university/
   - company: 美团
+    location: 北京
+    roles:
+      - 机器人系统工程师
+      - 无人机感知算法工程师
+      - 自动驾驶决策规划算法工程师
     status: waiting
     progress: "7/16 投递"
+    apply_url: https://zhaopin.meituan.com/web/campus
   - company: 京东
+    location: 北京
+    roles:
+      - 具身智能与机器人开发
     status: waiting
     progress: "7/16 投递"
+    apply_url: https://campus.jd.com/
   - company: 库玛
+    location: 深圳
+    roles:
+      - 感知算法工程师
     status: waiting
     progress: "7/18 投递"
+    apply_url: https://mammotion.jobs.feishu.cn/campus_recruitment
   - company: 松延动力
+    location: 北京
+    roles:
+      - 机器人运控算法工程师
     status: waiting
     progress: "7/18 投递"
+    apply_url: https://noetixrobotics.com/campus-recruitment
   - company: 卓驭
+    location: 深圳
+    roles:
+      - 控制算法工程师
     status: waiting
     progress: "7/18 投递"
+    apply_url: https://we.zyt.com/campus
   - company: 文远知行
+    location: 广州
+    roles:
+      - 运动规划算法工程师
     status: waiting
     progress: "7/18 投递"
+    apply_url: https://zh.weride.ai/zh/careers
   - company: 百度
+    location: 北京
+    roles:
+      - 端到端决策规划控制算法工程师
+      - 智能体算法研究员
     status: waiting
     progress: "7/18 投递"
+    apply_url: https://talent.baidu.com/
   - company: 柏楚电子
+    location: 上海
+    roles:
+      - 运动控制工程师
     status: waiting
     progress: "7/19 投递（提前批）"
+    apply_url: https://fscut.zhiye.com/
   - company: ABB
+    location: 上海
     status: waiting
     progress: "7/20 投递"
+    apply_url: https://careers.abb/china/zh/students
