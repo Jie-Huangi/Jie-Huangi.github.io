@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Jobs
+title: Opportunities don’t happen. You create them.
 permalink: /jobs/
 hideHomeActive: true
 ---
@@ -12,7 +12,6 @@ hideHomeActive: true
 {% assign waiting = jobs | where: "status", "waiting" %}
 
 <div class="jobs-board">
-  <p class="jobs-slogan">Opportunities don’t happen. You create them.</p>
   <p class="jobs-intro">更新于 {{ site.data.jobs.updated }}</p>
 
   <div class="jobs-summary">
